@@ -1,15 +1,21 @@
 version: '2'
+
+volumes:
+  portainer_data:
+
 services:
 # Load Balancer
   nginx:
     image: nginx
     container_name: loadBalancer
+    restart: always
     ports:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
     links: 
       - portainer
+      - registry
     depends_on: 
       - portainer
 
@@ -24,5 +30,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
-volumes:
-  portainer_data:
+  registry:
+    image: registry:2
+    restart: always
+    ports:
+      - 5000:5000
+

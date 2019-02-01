@@ -31,7 +31,7 @@ services:
       - portainer_data:/data
 
   registry:
-    image: registry:2
+    image: registry:2.0
     restart: always
     ports:
       - "5000:5000"
@@ -39,5 +39,3 @@ services:
       - "./certs:/certs:ro"
       - "./registry/conf:/etc/docker/registry:ro"
       - "./registry/storage:/var/lib/registry:rw"
-
-

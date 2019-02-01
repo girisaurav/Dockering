@@ -34,5 +34,10 @@ services:
     image: registry:2
     restart: always
     ports:
-      - 5000:5000
+      - "5000:5000"
+    volumes:
+      - "./certs:/certs:ro"
+      - "./registry/conf:/etc/docker/registry:ro"
+      - "./registry/storage:/var/lib/registry:rw"
+
 

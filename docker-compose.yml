@@ -1,0 +1,14 @@
+version: '3'
+services: 
+	nginx:
+		image: 'nginx'
+		ports: 
+			- "80:80"
+		volumes: 
+			- ./nginx:/etc/nginx/sites-enabled
+		links:
+			- portainer
+	portainer:
+		image: 'portainer_data:/data portainer/portainer'
+		ports:
+			- "9000:9000"
